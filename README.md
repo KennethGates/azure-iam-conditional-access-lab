@@ -8,6 +8,10 @@ Azure IAM Conditional Access lab implementing Zero Trust by blocking legacy auth
 
 ### 📌 Overview
 
+## 🧭 Zero Trust Architecture Diagram
+
+![Zero Trust Diagram](images/policy-01/zero-trust-diagram.png)
+
 Legacy authentication protocols (Exchange ActiveSync, SMTP, IMAP, POP3, and older Office clients) do not support modern authentication and cannot enforce MFA.
 
 This makes them highly vulnerable to:
