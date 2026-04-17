@@ -42,31 +42,45 @@ This policy blocks all legacy authentication across the tenant using Conditional
 ## 📸 Screenshots
 
 ### Step 1: Conditional Access Overview
-![Step 1](images/policy-01/policy-01/step1.png)
+![Step 1](images/policy-01/step1.png)
 
 ### Step 2: Create New Policy
-![Step 2](images/policy-01/policy-01/step2.png)
+![Step 2](images/policy-01/step2.png)
 
 ### Step 3: Assign Users (All Users)
-![Step 3](images/policy-01/policy-01/step3.png)
+![Step 3](images/policy-01/step3.png)
 
 ### Step 4: Target Resources (All Resources)
-![Step 4](images/policy-01/policy-01/step4.png)
+![Step 4](images/policy-01/step4.png)
 
 ### Step 5: Configure Client Apps (Legacy Auth)
-![Step 5](images/policy-01/policy-01/step5.png)
+![Step 5](images/policy-01/step5.png)
 
 ### Step 6: Configure Grant Control (Block Access)
-![Step 6](images/policy-01/policy-01/step6.png)
+![Step 6](images/policy-01/step6.png)
 
 ### Step 7: Policy Created (Report-Only)
-![Step 7](images/policy-01/policy-01/step7.png)
+![Step 7](images/policy-01/step7.png)
 
 ### Step 8: Policy Details View
-![Step 8](images/policy-01/policy-01/step8.png)
+![Step 8](images/policy-01/step8.png)
 
 ### Step 9: Policy Verification / Sign-in Logs
-![Step 9](images/policy-01/policy-01/step9.png)
+![Step 9](images/policy-01/step9.png)
+---
+
+## 🔄 Before vs After
+
+**Before:**
+- Legacy authentication allowed
+- MFA could be bypassed
+- Increased risk of password spray attacks
+
+**After:**
+- Legacy authentication blocked
+- MFA enforced across all users
+- Reduced attack surface
+
 ---
 
 ## 🔍 Security Impact
@@ -79,9 +93,12 @@ across the tenant, and ensures no user can silently bypass MFA by
 falling back to a legacy client.
 
 ---
+### 🧪 Real-World Scenario
 
+An attacker attempts a password spray attack using legacy protocols such as IMAP or SMTP, which do not support MFA. Without this policy, the attacker could successfully authenticate using only a valid password. With this policy in place, the authentication attempt is blocked entirely, preventing unauthorized access.
 ## 🧠 Key Skills Demonstrated
 
+---
 - Azure / Microsoft Entra ID
 - Conditional Access Policies
 - Identity Security (IAM)
