@@ -1,17 +1,16 @@
 # Azure IAM Conditional Access Lab
-
 Azure IAM Conditional Access lab implementing Zero Trust by blocking legacy authentication and analyzing sign-in logs.
+
+---
+
+## 🧭 Zero Trust Architecture Diagram
+![Zero Trust Diagram](images/policy-01/zero-trust-diagram.png)
 
 ---
 
 ## 🔐 Policy 1 — Block Legacy Authentication
 
 ### 📌 Overview
-
-## 🧭 Zero Trust Architecture Diagram
-
-![Zero Trust Diagram](images/policy-01/zero-trust-diagram.png)
-
 Legacy authentication protocols (Exchange ActiveSync, SMTP, IMAP, POP3, and older Office clients) do not support modern authentication and cannot enforce MFA.
 
 This makes them highly vulnerable to:
@@ -71,19 +70,20 @@ This policy blocks all legacy authentication across the tenant using Conditional
 
 ### Step 9: Policy Verification / Sign-in Logs
 ![Step 9](images/policy-01/step9.png)
+
 ---
 
 ## 🔄 Before vs After
 
 **Before:**
-- Legacy authentication allowed
-- MFA could be bypassed
-- Increased risk of password spray attacks
+- Legacy auth protocols allowed tenant-wide
+- Accounts accessible via EAS/SMTP/IMAP protected by password alone
+- MFA could be silently bypassed by falling back to a legacy client
 
 **After:**
-- Legacy authentication blocked
-- MFA enforced across all users
-- Reduced attack surface
+- All legacy auth client types blocked at the Conditional Access layer
+- Authentication via non-modern clients rejected before credentials are evaluated
+- MFA bypass vector eliminated across the tenant
 
 ---
 
@@ -97,12 +97,14 @@ across the tenant, and ensures no user can silently bypass MFA by
 falling back to a legacy client.
 
 ---
-### 🧪 Real-World Scenario
 
+### 🧪 Real-World Scenario
 An attacker attempts a password spray attack using legacy protocols such as IMAP or SMTP, which do not support MFA. Without this policy, the attacker could successfully authenticate using only a valid password. With this policy in place, the authentication attempt is blocked entirely, preventing unauthorized access.
-## 🧠 Key Skills Demonstrated
 
 ---
+
+## 🧠 Key Skills Demonstrated
+
 - Azure / Microsoft Entra ID
 - Conditional Access Policies
 - Identity Security (IAM)
@@ -121,6 +123,5 @@ An attacker attempts a password spray attack using legacy protocols such as IMAP
 ---
 
 ## 👨🏾‍💻 Author
-
-Kenneth Gates  
+Kenneth Gates
 Cybersecurity | IAM | Cloud Security
