@@ -70,11 +70,13 @@ This policy blocks all legacy authentication across the tenant using Conditional
 ---
 
 ## 🔍 Security Impact
-
-- Eliminates legacy authentication attack surface
-- Enforces Zero Trust principles
-- Prevents MFA bypass attempts
-- Reduces risk of account compromise
+Legacy authentication protocols cannot respond to MFA challenges, meaning
+any account accessible via legacy auth is protected by password alone —
+regardless of whether MFA is configured tenant-wide. Blocking these
+protocols eliminates a primary attack vector for password spray and
+credential stuffing attacks, enforces consistent authentication standards
+across the tenant, and ensures no user can silently bypass MFA by
+falling back to a legacy client.
 
 ---
 
