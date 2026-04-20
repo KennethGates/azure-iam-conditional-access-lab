@@ -159,32 +159,31 @@ Without MFA enforcement, accounts protected by password alone are vulnerable to:
 ## 📸 Screenshots
 
 ### Step 1: CA Policies List (Before)
-![Step 1](images/policy-02/step1-before-policies-list.png)
+![Step 1](images/policy-02/policy-02-step1-before-policies-list.png)
 
 ### Step 2: Policy Name Entered
-![Step 2](images/policy-02/step2-policy-name.png)
+![Step 2](images/policy-02/policy-02-step2-policy-name.png)
 
 ### Step 3: Users — All Users Selected (Include)
-![Step 3](images/policy-02/step3-users-all-users.png)
+![Step 3](images/policy-02/policy-02-step3-users-all-users.png)
 
 ### Step 4: Break-Glass Account Excluded
-![Step 4](images/policy-02/step4-exclude-break-glass.png)
+![Step 4](images/policy-02/policy-02-step4-exclude-break-glass.png)
 
 ### Step 5: Target Resources — All Resources
-![Step 5](images/policy-02/step5-all-resources.png)
+![Step 5](images/policy-02/policy-02-step5-all-resources.png)
 
 ### Step 6: Grant — Require MFA Selected
-![Step 6](images/policy-02/step6-require-mfa.png)
+![Step 6](images/policy-02/policy-02-step6-require-mfa.png)
 
 ### Step 7: Report-Only Confirmed Before Save
-![Step 7](images/policy-02/step7-report-only.png)
+![Step 7](images/policy-02/policy-02-step7-report-only.png)
 
 ### Step 8: Policy Created — Report-Only in List
-![Step 8](images/policy-02/step8-policy-created.png)
+![Step 8](images/policy-02/policy-02-step8-policy-created.png)
 
 ### Step 9: Sign-In Logs — Policy Evaluated
-![Step 9](images/policy-02/step10-sign-in-logs.png)
-
+![Step 9](images/policy-02/policy-02-step10-sign-in-logs.png)
 ---
 
 ## 🔄 Before vs After
