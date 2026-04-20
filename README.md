@@ -495,3 +495,95 @@ An employee's corporate credentials are used to sign in from a personal laptop t
 ## 👨🏾‍💻 Author
 Kenneth Gates
 Cybersecurity | IAM | Cloud Security
+
+---
+
+## 🔐 Policy 6 — Require MFA for Admin Roles
+
+### 📌 Overview
+This policy applies MFA specifically to users assigned high-privilege directory roles — Global Administrator, Privileged Role Administrator, and Security Administrator. Unlike Policy 2 which enforces MFA for all users, this policy targets the accounts with the highest blast radius if compromised.
+
+Admin accounts are the primary target of advanced persistent threats and credential attacks. This policy ensures they are always subject to MFA regardless of any other policy configuration.
+
+---
+
+## ⚙️ Configuration Steps
+
+1. Navigate to **Microsoft Entra ID → Conditional Access**
+2. Click **New Policy**
+3. Name the policy: `Require MFA — Admin Roles`
+4. Set **Users** → Select users and groups
+   - Check **Directory roles**
+   - Select:
+     - Global Administrator
+     - Privileged Role Administrator
+     - Security Administrator
+5. Set **Target Resources** → All resources
+6. Configure **Grant Controls**
+   - Select **Grant access**
+   - Check **Require multifactor authentication**
+7. Set policy state to **Report-only**
+8. Click **Create**
+
+---
+
+## 📸 Screenshots
+
+### Step 1: Policy Name Entered
+![Step 1](images/policy-06/policy-06-step01-create-policy.png)
+
+### Step 2a: Directory Roles — Global Administrator Selected
+![Step 2a](images/policy-06/policy-06-step02-admin-roles-part1.png)
+
+### Step 2b: Directory Roles — Privileged Role Admin + Security Administrator Selected
+![Step 2b](images/policy-06/policy-06-step02-admin-roles-part2.png)
+
+### Step 3: Target Resources — All Resources
+![Step 3](images/policy-06/policy-06-step03-all-cloud-apps.png)
+
+### Step 4: Report-Only Confirmed
+![Step 4](images/policy-06/policy-06-step05-report-only.png)
+
+### Final: All 6 Policies — Report-Only Confirmed
+![Final](images/policy-06/policy-final-step03-6-policies.png)
+
+---
+
+## 🔄 Before vs After
+
+**Before:**
+- Admin role accounts subject only to the same MFA policies as standard users
+- No targeted enforcement existed specifically for privileged identities
+- A compromised admin account with no MFA requirement had unrestricted tenant access
+
+**After:**
+- Global Administrator, Privileged Role Administrator, and Security Administrator always require MFA
+- Privileged identity protection is enforced independently of user-wide policies
+- Highest blast-radius accounts have a dedicated, always-on MFA requirement
+
+---
+
+## 🔍 Security Impact
+
+Admin accounts represent the most valuable targets in any tenant. A compromised Global Administrator can create new accounts, modify security policies, disable MFA, and exfiltrate data at scale. Applying a dedicated MFA policy to admin roles ensures that even if the broader MFA policies are misconfigured or temporarily disabled, privileged accounts remain protected by their own enforcement layer.
+
+---
+
+### 🧪 Real-World Scenario
+
+An attacker compromises the password of a Global Administrator account through a phishing campaign. Without this policy, if the admin account had no MFA registered or if a broader policy was misconfigured, the attacker gains full tenant access. With this policy in place, MFA is required at the Conditional Access layer regardless of per-user settings — blocking the attacker even with valid credentials.
+
+---
+
+## 🧠 Key Skills Demonstrated
+- Privileged Identity Protection
+- Role-Based Conditional Access
+- Admin Account Security Hardening
+- Microsoft Entra ID Directory Roles
+- Zero Trust Privileged Access Design
+
+---
+
+## 👨🏾‍💻 Author
+Kenneth Gates
+Cybersecurity | IAM | Cloud Security
