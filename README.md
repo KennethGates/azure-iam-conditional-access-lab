@@ -317,3 +317,93 @@ A user's credentials are used in a sign-in attempt from an anonymous IP address 
 ## 👨🏾‍💻 Author
 Kenneth Gates
 Cybersecurity | IAM | Cloud Security
+
+---
+
+## 🔐 Policy 4 — Block Access for High Risk Sign-Ins
+
+### 📌 Overview
+This policy takes a zero-tolerance approach to high risk sign-ins by blocking access entirely rather than challenging with MFA. When Entra ID detects a high risk sign-in — such as one originating from a known malicious IP or exhibiting impossible travel — this policy denies access outright.
+
+This is the most aggressive of the four policies and represents the final layer of the Zero Trust enforcement stack built in this lab.
+
+---
+
+## ⚙️ Configuration Steps
+
+1. Navigate to **Microsoft Entra ID → Conditional Access**
+2. Click **New Policy**
+3. Name the policy: `Block Access — High Risk Sign-ins`
+4. Set **Users** → All users
+   - Exclude: break-glass admin account
+5. Set **Target Resources** → All resources
+6. Set **Conditions → Sign-in risk**
+   - Configure: Yes
+   - Select: **High** only
+7. Configure **Grant Controls**
+   - Select **Block access**
+8. Set policy state to **Report-only**
+9. Click **Create**
+
+---
+
+## 📸 Screenshots
+
+### Step 1: Policy Name Entered
+![Step 1](images/policy-04/policy-04-step01-create-policy.png)
+
+### Step 2: Break-Glass Account Excluded
+![Step 2](images/policy-04/policy-04-step02-exclude-breakglass.png)
+
+### Step 3: Target Resources — All Resources
+![Step 3](images/policy-04/policy-04-step03-target-resources.png)
+
+### Step 4: Sign-In Risk — High Only Selected
+![Step 4](images/policy-04/policy-04-step04-high-risk-only.png)
+
+### Step 5: Grant — Block Access Selected
+![Step 5](images/policy-04/policy-04-step05-block-access.png)
+
+### Final: All 4 Policies — Report-Only Confirmed
+![Final](images/policy-04/policy-04-step06-all-policies.png)
+
+---
+
+## 🔄 Before vs After
+
+**Before:**
+- High risk sign-ins were not blocked at the Conditional Access layer
+- Even sessions flagged as high risk could proceed with or without MFA
+- Threat intelligence signals generated alerts but no enforcement action
+
+**After:**
+- High risk sign-ins are blocked entirely before access is granted
+- No MFA challenge is offered — access is denied at the policy layer
+- Real-time risk intelligence is now directly tied to enforcement
+
+---
+
+## 🔍 Security Impact
+
+Policy 3 challenges medium and high risk sign-ins with MFA. Policy 4 goes further — for the highest risk sessions, MFA is not sufficient. An attacker with access to an MFA device or using a SIM swap attack could still pass an MFA challenge. Blocking access entirely for high risk sign-ins eliminates that gap and ensures that Microsoft's most severe threat detections result in immediate denial rather than a challengeable prompt.
+
+---
+
+### 🧪 Real-World Scenario
+
+A user's credentials appear in a dark web credential dump and are used in a sign-in attempt from a known malicious IP. Entra ID scores this as a high risk sign-in. Policy 3 would challenge with MFA — but if the attacker controls the MFA device, they could pass. Policy 4 blocks the session entirely, ensuring that no level of credential possession grants access when the risk score is at its highest.
+
+---
+
+## 🧠 Key Skills Demonstrated
+- Zero Trust Access Enforcement
+- Risk-Based Block Policies
+- Layered Conditional Access Design
+- Microsoft Entra ID Protection
+- Threat Intelligence Integration
+
+---
+
+## 👨🏾‍💻 Author
+Kenneth Gates
+Cybersecurity | IAM | Cloud Security
