@@ -224,3 +224,96 @@ An attacker obtains valid credentials through a phishing campaign. Without MFA e
 ## 👨🏾‍💻 Author
 Kenneth Gates  
 Cybersecurity | IAM | Cloud Security
+
+---
+
+## 🔐 Policy 3 — Require MFA for Medium & High Risk Sign-Ins
+
+### 📌 Overview
+This policy enforces multifactor authentication specifically when Entra ID detects a medium or high risk sign-in. Unlike Policy 2 which requires MFA for all sign-ins, this policy is risk-based — it triggers only when real-time risk signals indicate the session may be compromised.
+
+Without risk-based MFA enforcement, a compromised session flagged as high risk would still be allowed to proceed uninterrupted. This policy closes that gap.
+
+---
+
+## ⚙️ Configuration Steps
+
+1. Navigate to **Microsoft Entra ID → Conditional Access**
+2. Click **New Policy**
+3. Name the policy: `Require MFA — Medium & High Risk`
+4. Set **Users** → All users
+   - Exclude: break-glass admin account
+5. Set **Conditions → Sign-in risk**
+   - Configure: Yes
+   - Select: **High** and **Medium**
+6. Configure **Grant Controls**
+   - Select **Grant access**
+   - Check **Require multifactor authentication**
+7. Set policy state to **Report-only**
+8. Click **Create**
+
+---
+
+## 📸 Screenshots
+
+### Step 1: Policy Name Entered
+![Step 1](images/policy-03/policy-03-step01-create-policy.png)
+
+### Step 2: Users — All Users Selected (Include)
+![Step 2](images/policy-03/policy-03-step02-exclude-breakglass.png)
+
+### Step 3: Break-Glass Account Excluded
+![Step 3](images/policy-03/policy-03-step03-exclude-breakglass.png)
+
+### Step 4: Sign-In Risk — High and Medium Selected
+![Step 4](images/policy-03/policy-03-step04-sign-in-risk.png)
+
+### Step 5: Grant — Require MFA Selected
+![Step 5](images/policy-03/policy-03-step05-require-mfa.png)
+
+### Step 6: Report-Only Confirmed
+![Step 6](images/policy-03/policy-03-step06-report-only.png)
+
+### Final: All 3 Policies — Report-Only Confirmed
+![Final](images/policy-03/policy-final-step01-all-policies-report-only.png)
+
+---
+
+## 🔄 Before vs After
+
+**Before:**
+- Risky sign-ins flagged by Entra ID were not automatically challenged
+- A session marked high risk could proceed without additional verification
+- Risk detections generated alerts but triggered no enforcement action
+
+**After:**
+- Medium and high risk sign-ins automatically trigger MFA challenge
+- Compromised sessions are interrupted before access is granted
+- Risk-based enforcement adds an adaptive layer on top of baseline MFA policy
+
+---
+
+## 🔍 Security Impact
+
+Risk-based Conditional Access uses Microsoft's real-time threat intelligence to evaluate each sign-in. When a session is flagged as medium or high risk — due to signals like impossible travel, anonymous IP, or leaked credentials — this policy intercepts it and requires MFA before access is granted. This is a significant improvement over static MFA policies because it responds dynamically to actual threat signals rather than treating every sign-in the same way.
+
+---
+
+### 🧪 Real-World Scenario
+
+A user's credentials are used in a sign-in attempt from an anonymous IP address flagged by Microsoft threat intelligence. Entra ID scores this as a high risk sign-in. Without this policy, the session proceeds. With this policy in place, the user is immediately challenged for MFA — and if they cannot complete it, access is blocked, containing the potential compromise.
+
+---
+
+## 🧠 Key Skills Demonstrated
+- Risk-Based Conditional Access
+- Microsoft Entra ID Protection
+- Adaptive MFA Enforcement
+- Real-Time Sign-In Risk Evaluation
+- Zero Trust Policy Layering
+
+---
+
+## 👨🏾‍💻 Author
+Kenneth Gates
+Cybersecurity | IAM | Cloud Security
