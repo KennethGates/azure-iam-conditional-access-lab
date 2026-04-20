@@ -407,3 +407,91 @@ A user's credentials appear in a dark web credential dump and are used in a sign
 ## 👨🏾‍💻 Author
 Kenneth Gates
 Cybersecurity | IAM | Cloud Security
+
+---
+
+## 🔐 Policy 5 — Require Compliant Device for All Users
+
+### 📌 Overview
+This policy requires that all users access cloud resources only from devices marked as compliant in Microsoft Intune. A compliant device has met the organization's security baseline — such as having disk encryption enabled, a PIN set, and up-to-date OS patches.
+
+This moves beyond identity-based controls and adds a device health check as a condition of access, a core pillar of Zero Trust.
+
+---
+
+## ⚙️ Configuration Steps
+
+1. Navigate to **Microsoft Entra ID → Conditional Access**
+2. Click **New Policy**
+3. Name the policy: `Require Compliant Device — All Users`
+4. Set **Users** → All users
+   - Exclude: break-glass admin account
+5. Set **Target Resources** → All resources
+6. Configure **Grant Controls**
+   - Select **Grant access**
+   - Check **Require device to be marked as compliant**
+7. Set policy state to **Report-only**
+8. Click **Create**
+
+---
+
+## 📸 Screenshots
+
+### Step 1: Policy Name Entered
+![Step 1](images/policy-05/policy-05-step01-create-policy.png)
+
+### Step 2: Break-Glass Account Excluded
+![Step 2](images/policy-05/policy-05-step02-users.png)
+
+### Step 3: Target Resources — All Resources
+![Step 3](images/policy-05/policy-05-step03-target-resources.png)
+
+### Step 4: Grant — Require Compliant Device Selected
+![Step 4](images/policy-05/policy-05-step05-require-compliant-device.png)
+
+### Step 5: Report-Only Confirmed
+![Step 5](images/policy-05/policy-05-step06-report-only.png)
+
+### Final: All 5 Policies — Report-Only Confirmed
+![Final](images/policy-05/policy-final-step02-5-policies.png)
+
+---
+
+## 🔄 Before vs After
+
+**Before:**
+- Users could access cloud resources from any device regardless of health
+- A compromised or unmanaged device with valid credentials had full access
+- No device posture check existed at the access control layer
+
+**After:**
+- All users must authenticate from an Intune-compliant device
+- Unmanaged, unpatched, or non-enrolled devices are blocked at the CA layer
+- Device health is now a required signal alongside identity for access decisions
+
+---
+
+## 🔍 Security Impact
+
+Identity alone is not sufficient to trust a session. A valid username and password from a malware-infected personal device represents a significant risk even if MFA is completed. This policy adds device compliance as a mandatory gate — ensuring that the endpoint itself meets the organization's security baseline before access is granted. Combined with the MFA policies already in place, this creates a strong two-signal requirement: trusted identity AND trusted device.
+
+---
+
+### 🧪 Real-World Scenario
+
+An employee's corporate credentials are used to sign in from a personal laptop that is not enrolled in Intune and has no disk encryption or endpoint protection. Without this policy, the sign-in succeeds. With this policy in place, the device fails the compliance check and access is blocked — even though the credentials and MFA were valid.
+
+---
+
+## 🧠 Key Skills Demonstrated
+- Device-Based Conditional Access
+- Microsoft Intune Compliance Integration
+- Zero Trust Device Posture Enforcement
+- Layered Identity and Device Controls
+- Report-Only Mode Validation
+
+---
+
+## 👨🏾‍💻 Author
+Kenneth Gates
+Cybersecurity | IAM | Cloud Security
