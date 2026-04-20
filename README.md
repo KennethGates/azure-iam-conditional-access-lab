@@ -125,3 +125,103 @@ An attacker attempts a password spray attack using legacy protocols such as IMAP
 ## 👨🏾‍💻 Author
 Kenneth Gates
 Cybersecurity | IAM | Cloud Security
+
+---
+
+## 🔐 Policy 2 — Require MFA for All Users
+
+### 📌 Overview
+This policy enforces multifactor authentication for all users across all cloud resources in the tenant. A break-glass account is excluded to ensure emergency administrative access is never locked out.
+
+Without MFA enforcement, accounts protected by password alone are vulnerable to:
+- Credential stuffing
+- Phishing attacks
+- Brute-force login attempts
+
+---
+
+## ⚙️ Configuration Steps
+
+1. Navigate to **Microsoft Entra ID → Conditional Access**
+2. Click **New Policy**
+3. Name the policy: `Require MFA — All Users`
+4. Set **Users** → All users
+   - Exclude: break-glass admin account
+5. Set **Target Resources** → All resources
+6. Configure **Grant Controls**
+   - Select **Grant access**
+   - Check **Require multifactor authentication**
+7. Set policy state to **Report-only**
+8. Click **Create**
+
+---
+
+## 📸 Screenshots
+
+### Step 1: CA Policies List (Before)
+![Step 1](images/policy-02/step1-before-policies-list.png)
+
+### Step 2: Policy Name Entered
+![Step 2](images/policy-02/step2-policy-name.png)
+
+### Step 3: Users — All Users Selected (Include)
+![Step 3](images/policy-02/step3-users-all-users.png)
+
+### Step 4: Break-Glass Account Excluded
+![Step 4](images/policy-02/step4-exclude-break-glass.png)
+
+### Step 5: Target Resources — All Resources
+![Step 5](images/policy-02/step5-all-resources.png)
+
+### Step 6: Grant — Require MFA Selected
+![Step 6](images/policy-02/step6-require-mfa.png)
+
+### Step 7: Report-Only Confirmed Before Save
+![Step 7](images/policy-02/step7-report-only.png)
+
+### Step 8: Policy Created — Report-Only in List
+![Step 8](images/policy-02/step8-policy-created.png)
+
+### Step 9: Sign-In Logs — Policy Evaluated
+![Step 9](images/policy-02/step10-sign-in-logs.png)
+
+---
+
+## 🔄 Before vs After
+
+**Before:**
+- No MFA requirement enforced at the Conditional Access layer
+- Users could authenticate with password alone across all cloud apps
+- Phishing or credential theft provided immediate full account access
+
+**After:**
+- All users required to complete MFA for every cloud resource
+- Break-glass account excluded to preserve emergency admin access
+- Policy evaluated in Report-only mode to validate scope before enforcement
+
+---
+
+## 🔍 Security Impact
+
+Passwords alone are insufficient against modern credential attacks. This policy closes the gap by requiring a second factor at the Conditional Access layer — independent of per-user MFA settings. The break-glass exclusion follows Microsoft's recommended best practice to ensure administrators retain emergency access if MFA infrastructure fails or a misconfiguration affects enforcement.
+
+---
+
+### 🧪 Real-World Scenario
+
+An attacker obtains valid credentials through a phishing campaign. Without MFA enforcement, they authenticate successfully and access cloud resources immediately. With this policy in place, authentication is blocked at the Conditional Access layer until a second factor is verified — rendering stolen credentials alone insufficient for access.
+
+---
+
+## 🧠 Key Skills Demonstrated
+- Microsoft Entra ID Conditional Access
+- MFA Policy Design
+- Break-Glass Account Strategy
+- Zero Trust Identity Enforcement
+- Report-Only Mode Validation
+
+---
+
+## 👨🏾‍💻 Author
+Kenneth Gates  
+Cybersecurity | IAM | Cloud Security
