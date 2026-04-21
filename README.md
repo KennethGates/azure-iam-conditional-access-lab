@@ -1,6 +1,7 @@
 # Azure IAM Conditional Access Lab
 Azure IAM Conditional Access lab implementing Zero Trust by blocking legacy authentication and analyzing sign-in logs.
 
+![Status](https://img.shields.io/badge/Project-Complete-brightgreen)
 ---
 
 ## 🧭 Zero Trust Architecture Diagram
